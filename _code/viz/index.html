@@ -19,7 +19,7 @@
 
 .link {
   fill: none;
-  stroke: steelblue;
+  /*stroke: steelblue;*/
   opacity: 0.3;
   /*stroke-width: 1.5px;*/
 }
@@ -166,7 +166,9 @@ function update(source) {
       .attr("d", function(d) {
         var o = {x: source.x0, y: source.y0};
         return diagonal({source: o, target: o});
-      });
+      })
+      .attr("stroke", function(d){ 
+      	return linkColor(d.target.colorCode);});
 
   // Transition links to their new position.
   link.transition()
@@ -231,7 +233,6 @@ function expandAll() {
 }
 
 function reloadData(){
-//	console.log('reload data');
 	var levels = document.getElementById("levels");
 	var level_val = levels.options[levels.selectedIndex].value;
 	
@@ -240,7 +241,7 @@ function reloadData(){
 	
 	var file_name = 'assignment/'+ass_val+'-level-'+level_val+'.json';
 //	ass1-anna-activities-level-1.json
-	console.log(file_name);
+//	console.log(file_name);
 //	console.log(document.getElementById("assignment").selectedIndex);
 
 	d3.json(file_name, function(error, flare) {
@@ -253,6 +254,30 @@ function reloadData(){
 	  update(root);
 	});
 	
+}
+
+function linkColor(linkCode) {
+	switch (linkCode)
+	{
+	  case 'Exploration Actions': 
+	  	return '#0000FF';//blue
+	    break;
+	  case 'Task Actions':
+	  	return '#FF7F00';//orange
+	  	break;
+	  case 'App Actions': 
+		return '#FF0000';//red
+		break;
+	  case 'Insight Actions':
+		return '#7F007F';//purple
+		break;
+	  case 'Meta Actions':
+		  return '#00FFFF';//cyan
+		  break;
+	  default:
+		  return '#0950D0';//generic blue
+		  break;
+	}
 }
 </script>
 
