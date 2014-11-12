@@ -56,6 +56,8 @@
 <option value="ass3-sophia-pablo-activities">Ass3: Sophia-Pablo</option> 
 <option value="ass3-xavier-ian-activities">Ass3: Xavier-Ian</option></select>
 <button type="button" onclick="reloadData()">Load</button>
+<button type="button" onclick="collapseAll()">Collapse All</button>
+<button type="button" onclick="expandAll()">Expand All</button>
 <div id="viz"></div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
@@ -89,15 +91,7 @@ d3.json("assignment/ass1-anna-activities-level-1.json", function(error, flare) {
   root = flare;
   root.x0 = height / 2;
   root.y0 = 0;
-
-  function collapse(d) {
-    if (d.children) {
-      d._children = d.children;
-      d._children.forEach(collapse);
-      d.children = null;
-    }
-  }
-
+  
   root.children.forEach(collapse);
   update(root);
 });
@@ -207,6 +201,35 @@ function click(d) {
   update(d);
 }
 
+function collapse(d) {
+  if (d.children) {
+    d._children = d.children;
+    d._children.forEach(collapse);
+    d.children = null;
+  }
+}
+
+function collapseAll() {
+	root.children.forEach(collapse);
+	update(root);
+}
+
+function expand(d) {
+	if (d._children) {
+		d.children = d._children;
+		d._children = null;
+	}
+	if (d.children) {
+		d.children.forEach(expand);
+	}
+	
+}
+
+function expandAll() {
+	root.children.forEach(expand);
+	update(root);
+}
+
 function reloadData(){
 //	console.log('reload data');
 	var levels = document.getElementById("levels");
@@ -225,15 +248,7 @@ function reloadData(){
 	  root = flare;
 	  root.x0 = height / 2;
 	  root.y0 = 0;
-	
-	  function collapse(d) {
-	    if (d.children) {
-	      d._children = d.children;
-	      d._children.forEach(collapse);
-	      d.children = null;
-	    }
-	  }
-	
+		
 	  root.children.forEach(collapse);
 	  update(root);
 	});
