@@ -161,7 +161,7 @@ function update(source) {
   link.enter().insert("path", "g")
       .attr("class", "link")
       .attr("stroke-width", function(d){
-      	return edge_weight(d.target.size);
+      	return 1;
       })
       .attr("d", function(d) {
         var o = {x: source.x0, y: source.y0};
@@ -173,7 +173,15 @@ function update(source) {
   // Transition links to their new position.
   link.transition()
       .duration(duration)
-      .attr("d", diagonal);
+      .attr("d", function(d){
+      /* calculating the top shift */
+      var source = {x: d.source.x - edge_weight(calculateLinkSourcePosition(d)), y: d.source.y};
+      var target = {x: d.target.x, y: d.target.y};
+      return diagonal({source: source, target: target});
+      })
+      .attr("stroke-width", function(d){
+      	return edge_weight(d.target.size);
+      });
 
   // Transition exiting nodes to the parent's new position.
   link.exit().transition()
@@ -189,6 +197,25 @@ function update(source) {
     d.x0 = d.x;
     d.y0 = d.y;
   });
+}
+
+function calculateLinkSourcePosition(link) {
+	targetID = link.target.id;
+	var childrenNumber = link.source.children.length;
+	var widthAbove = 0;
+	for (var i = 0; i < childrenNumber; i++)
+	{
+		if (link.source.children[i].id == targetID)
+		{
+			// we are done
+			widthAbove = widthAbove + link.source.children[i].size/2;
+			break;
+		}else {
+			// keep adding
+			widthAbove = widthAbove + link.source.children[i].size
+		}
+	}
+	return link.source.size/2 - widthAbove;
 }
 
 // Toggle children on click.
