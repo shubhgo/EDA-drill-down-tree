@@ -1,0 +1,207 @@
+App Actions,Datasource Actions,Analyze,tabdoc:show-me
+App Actions,Document Actions,Close,tabdoc:move-dashboard-edge
+App Actions,Datasource Actions,Connect,tabui:save-workbook
+App Actions,Datasource Actions,Connect,tabdoc:set-sheet-formatting
+App Actions,Datasource Actions,Connect,tabdoc:move-free-form-zone
+App Actions,Document Actions,Exit,tabdoc:move-zone
+App Actions,Document Actions,Export,tabui:presentation-mode
+App Actions,Document Actions,Export,tabdoc:resize-cell
+App Actions,Datasource Actions,Extract,tabui:connection-analyze-data-ui
+App Actions,Datasource Actions,Extract,tabui:upgrade-datasources-ui
+App Actions,Visual Display Actions,Format,tabui:connect-datasource
+App Actions,Visual Display Actions,Format,tabdoc:resize-header
+App Actions,Visual Display Actions,Format,tabdoc:set-item-color
+App Actions,Visual Display Actions,Format,tabdoc:select-all
+App Actions,Visual Display Actions,Format,tabui:connection-add-new-table-ui
+App Actions,Visual Display Actions,Format,tabdoc:toggle-freeform-zone
+App Actions,Visual Display Actions,Format,tabdoc:change-size
+App Actions,Visual Display Actions,Format,tabui:show-quickfilter
+App Actions,Visual Display Actions,Format,tabui:format-ui
+App Actions,Visual Display Actions,Format,tabdoc:set-dashboard-size
+App Actions,Visual Display Actions,Format,tabui:edit-datasource
+App Actions,Document Actions,Import,tabdoc:extract
+App Actions,Visual Display Actions,Move,tabui:export-workbook-sheets-ui
+App Actions,Visual Display Actions,Move,tabui:view-caption-card
+App Actions,Visual Display Actions,Move,tabui:exit-application
+App Actions,Visual Display Actions,Move,tabdoc:resize-point-annotation
+App Actions,Visual Display Actions,Move,tabui:save-as-workbook
+App Actions,Document Actions,Publish,tabui:view-dashboard-title
+App Actions,Datasource Actions,Reconnect,tabdoc:set-default-color
+App Actions,Datasource Actions,Refresh,tabui:view-quick-filters
+App Actions,Document Actions,Rename,tabui:format-label
+App Actions,Visual Display Actions,Reorder,tabdoc:move-point-annotation
+App Actions,Visual Display Actions,Resize,tabui:show-field-format-ui
+App Actions,Visual Display Actions,Resize,tabui:view-card
+App Actions,Visual Display Actions,Resize,tabui:format-field-label-ui
+App Actions,Visual Display Actions,Resize,tabui:set-default-text-format-ui
+App Actions,Visual Display Actions,Resize,tabdoc:resize-axis
+App Actions,Visual Display Actions,Resize,tabdoc:show-legend-on-dashboard
+App Actions,Visual Display Actions,Resize,tabui:view-legend
+App Actions,Document Actions,Save,tabui:extract-ui
+App Actions,Document Actions,Save,tabui:rename-datasource
+App Actions,Document Actions,Save,tabui:format-axis-ui
+App Actions,Visual Display Actions,Select,tabui:format-legends-ui
+App Actions,Visual Display Actions,Select,tabui:select-parent-zone
+App Actions,Visual Display Actions,Select,tabui:toggle-filmstrip-ui
+App Actions,Visual Display Actions,Show,tabui:view-rows-shelf
+App Actions,Visual Display Actions,Show,tabui:view-summary-card
+App Actions,Visual Display Actions,Show,tabui:refresh-datasource
+App Actions,Visual Display Actions,Show,tabui:close-datasource
+App Actions,Visual Display Actions,Show,tabui:export-packaged
+App Actions,Visual Display Actions,Show,tabui:import-workbook-ui
+App Actions,Visual Display Actions,Show,tabui:publish-workbook-to-workgroup
+App Actions,Visual Display Actions,Show,tabui:save-public
+App Actions,Visual Display Actions,View,tabdoc:change-label-font
+App Actions,Visual Display Actions,View,tabui:change-tab-color-sheet
+App Actions,Visual Display Actions,View,tabui:add-to-schema-field-folder-ui
+App Actions,Visual Display Actions,View,tabdoc:resize-area-annotation-text
+App Actions,Visual Display Actions,View,tabdoc:select-fields-in-shelf
+App Actions,Visual Display Actions,View,tabdoc:show-hidden-fields
+App Actions,Visual Display Actions,View,tabui:show-connect-tab
+App Actions,Visual Display Actions,View,tabui:show-in-out-sets
+App Actions,Visual Display Actions,View,tabui:show-quickfilter-ui
+App Actions,Visual Display Actions,View,tabui:show-cat-ctrl-quick-filter
+App Actions,Visual Display Actions,View,tabui:view-datasource-data
+App Actions,Visual Display Actions,View,tabui:view-title-card
+Exploration Actions,Data Exploration Actions,Aggregate,tabui:drop-ui
+Exploration Actions,Data Exploration Actions,Aggregate,tabdoc:select-legend-item
+Exploration Actions,Visual Exploration Action,Brush,tabui:change-aggregation-ui
+Exploration Actions,Visual Exploration Action,Brush,tabdoc:drop-on-dashboard
+Exploration Actions,Visual Exploration Action,Brush,tabdoc:highlight
+Exploration Actions,Visual Exploration Action,Brush,tabdoc:sort-from-indicator
+Exploration Actions,Data Exploration Actions,Calculate,tabdoc:filter-targets
+Exploration Actions,Data Exploration Actions,Calculate,tabdoc:pane-zoom-factor
+Exploration Actions,Data Exploration Actions,Calculate,tabdoc:quantitative-quick-filter-edit
+Exploration Actions,Data Exploration Actions,Calculate,tabdoc:clear-legend-selection
+Exploration Actions,Data Exploration Actions,Calculate,tabui:create-calculation-ui
+Exploration Actions,Data Exploration Actions,Calculate,tabui:edit-filter-ui
+Exploration Actions,Visual Exploration Action,Change Metaphor,tabdoc:toggle-legend-item-selection
+Exploration Actions,Visual Exploration Action,Change Metaphor,tabdoc:keep-only-or-exclude
+Exploration Actions,Visual Exploration Action,Change Metaphor,tabui:color-legend-edit-ui
+Exploration Actions,Visual Exploration Action,Change Metaphor,tabui:edit-schema-calculation-ui
+Exploration Actions,Visual Exploration Action,Change Metaphor,tabdoc:swap-rows-and-columns
+Exploration Actions,Visual Exploration Action,Change Metaphor,tabui:scroll-sheet
+Exploration Actions,Visual Exploration Action,Change Metaphor,tabui:table-calc-ordering-ui
+Exploration Actions,Visual Exploration Action,Change Metaphor,tabdoc:mark-label
+Exploration Actions,Visual Exploration Action,Change Metaphor,tabui:quick-table-calc-ui
+Exploration Actions,Data Exploration Actions,Filter,tabui:view-data
+Exploration Actions,Data Exploration Actions,Filter,tabdoc:update-mark-labels-settings
+Exploration Actions,Data Exploration Actions,Filter,tabui:edit-axis-ui
+Exploration Actions,Data Exploration Actions,Filter,tabdoc:aggregate-measures
+Exploration Actions,Data Exploration Actions,Filter,tabui:sort-ui
+Exploration Actions,Data Exploration Actions,Filter,tabdoc:add-to-sheet
+Exploration Actions,Data Exploration Actions,Filter,tabdoc:zoom-level
+Exploration Actions,Data Exploration Actions,Filter,tabdoc:add-object-to-dashboard
+Exploration Actions,Data Exploration Actions,Filter,tabdoc:master-detail-filter
+Exploration Actions,Data Exploration Actions,Filter,tabdoc:select-legend-items
+Exploration Actions,Data Exploration Actions,Filter,tabdoc:update-selection-delta
+Exploration Actions,Data Exploration Actions,Filter,tabui:table-calc-ui
+Exploration Actions,Data Exploration Actions,Filter,tabui:describe-field-ui
+Exploration Actions,Data Exploration Actions,Filter,tabdoc:quick-sort
+Exploration Actions,Data Exploration Actions,Filter,tabdoc:legend-group-or-ungroup
+Exploration Actions,Data Exploration Actions,Filter,tabui:display-encoding-type-menu
+Exploration Actions,Data Exploration Actions,Filter,tabdoc:reorder-legend-items
+Exploration Actions,Data Exploration Actions,Group,tabdoc:ungroup-layout-container
+Exploration Actions,Data Exploration Actions,Group,tabui:domain-quick-filter
+Exploration Actions,Data Exploration Actions,Group,tabui:edit-datasource-filters-ui
+Exploration Actions,Data Exploration Actions,Group,tabui:edit-filter-quick-filter
+Exploration Actions,Data Exploration Actions,Inspect,tabdoc:pane-zoom
+Exploration Actions,Data Exploration Actions,Inspect,tabui:add-to-sheet-ui
+Exploration Actions,Data Exploration Actions,Inspect,tabui:custom-date-aggregation-ui
+Exploration Actions,Data Exploration Actions,Inspect,tabui:cat-mode-quick-filter
+Exploration Actions,Visual Exploration Action,Pan,tabui:edit-schema-categorical-bins-ui
+Exploration Actions,Visual Exploration Action,Pan,tabui:edit-schema-numeric-bins-ui
+Exploration Actions,Visual Exploration Action,Pan,tabui:sort-descending-field-label-ui
+Exploration Actions,Data Exploration Actions,Query,tabui:include-exclude-values-quick-filter
+Exploration Actions,Data Exploration Actions,Query,tabui:set-filter-shared-ui
+Exploration Actions,Data Exploration Actions,Query,tabui:reset-cards
+Exploration Actions,Data Exploration Actions,Query,tabdoc:change-markers
+Exploration Actions,Data Exploration Actions,Query,tabdoc:pane-zoom-pan
+Exploration Actions,Data Exploration Actions,Query,tabui:sort-field-label-ui
+Exploration Actions,Data Exploration Actions,Query,tabdoc:zoom-controls-toggle
+Exploration Actions,Data Exploration Actions,Query,tabui:trend-lines-ui
+Exploration Actions,Data Exploration Actions,Restore,tabdoc:legend-keep-or-exclude
+Exploration Actions,Data Exploration Actions,Restore,tabdoc:relative-date-quick-filter-edit
+Exploration Actions,Data Exploration Actions,Restore,tabdoc:set-filter-context
+Exploration Actions,Data Exploration Actions,Restore,tabdoc:set-filter-shared
+Exploration Actions,Data Exploration Actions,Restore,tabdoc:group-by-table
+Exploration Actions,Visual Exploration Action,Sort,tabdoc:clear-quick-filter
+Exploration Actions,Visual Exploration Action,Sort,tabui:clear-viz-ui
+Exploration Actions,Visual Exploration Action,Sort,tabui:shape-legend-edit-ui
+Exploration Actions,Visual Exploration Action,Sort,tabui:sheet-sorter
+Exploration Actions,Visual Exploration Action,Sort,tabdoc:rotate-label
+Exploration Actions,Visual Exploration Action,Sort,tabdoc:on-toggle-axis-ranges
+Exploration Actions,Visual Exploration Action,Sort,tabdoc:toggle-drop-lines
+Exploration Actions,Visual Exploration Action,Sort,tabdoc:add-sheet-to-dashboard
+Exploration Actions,Visual Exploration Action,Split,tabui:add-reference-line-ui
+Exploration Actions,Visual Exploration Action,Zoom,tabdoc:quantitative-mode-quick-filter
+Exploration Actions,Visual Exploration Action,Zoom,tabui:edit-title-quick-filter
+Exploration Actions,Visual Exploration Action,Zoom,tabui:clear-sheet-ui
+Exploration Actions,Visual Exploration Action,Zoom,tabui:sort-ascending-field-label-ui
+Insight Actions,Visual Insight Actions,Annotate,tabdoc:rename-sheet
+Insight Actions,Visual Insight Actions,Annotate,tabdoc:remove-fields
+Insight Actions,Visual Insight Actions,Annotate,tabui:hide-zone-ui
+Insight Actions,Visual Insight Actions,Annotate,tabui:edit-zone-param
+Insight Actions,Visual Insight Actions,Annotate,tabui:reorder-sheets-ui
+Insight Actions,Visual Insight Actions,Annotate,tabui:edit-title
+Insight Actions,Visual Insight Actions,Annotate,tabui:edit-caption
+Insight Actions,Visual Insight Actions,Annotate,tabdoc:hide-field
+Insight Actions,Visual Insight Actions,Bookmark,tabui:rename-sheet-ui
+Insight Actions,Visual Insight Actions,Bookmark,tabui:create-categorical-bins-ui
+Insight Actions,Visual Insight Actions,Bookmark,tabdoc:update-area-annotation
+Insight Actions,Visual Insight Actions,Bookmark,tabui:edit-schema-caption-ui
+Insight Actions,Visual Insight Actions,Bookmark,tabui:create-numeric-bins-ui
+Insight Actions,Knowledge Insight Actions,Create,tabui:annotate-ui
+Insight Actions,Knowledge Insight Actions,Create,tabui:edit-text
+Insight Actions,Knowledge Insight Actions,Create,tabui:edit-reference-line
+Insight Actions,Knowledge Insight Actions,Create,tabdoc:edit-story-point-caption
+Insight Actions,Knowledge Insight Actions,Create,tabui:set-default-location-ui
+Insight Actions,Knowledge Insight Actions,Create,tabui:edit-annotation
+Insight Actions,Knowledge Insight Actions,Create,tabdoc:set-active-story-point
+Insight Actions,Knowledge Insight Actions,Create,tabdoc:hide-label
+Insight Actions,Knowledge Insight Actions,hide,tabui:actions-edit-dashboard
+Insight Actions,Knowledge Insight Actions,hide,tabdoc:hide-column-field-label
+Insight Actions,Knowledge Insight Actions,hide,tabui:replace-story-point-ui
+Insight Actions,Knowledge Insight Actions,hide,tabui:remove-annotation
+Insight Actions,Knowledge Insight Actions,hide,tabdoc:duplicate-fields
+Insight Actions,Knowledge Insight Actions,hide,tabui:create-group-selection-ui
+Insight Actions,Knowledge Insight Actions,Modify,tabui:create-parameter-ui
+Insight Actions,Knowledge Insight Actions,Modify,tabui:show-me-hide-ui
+Insight Actions,Knowledge Insight Actions,Modify,tabui:delete-story-point-ui
+Insight Actions,Knowledge Insight Actions,Modify,tabdoc:insert-story-point
+Insight Actions,Knowledge Insight Actions,Modify,tabui:create-group-ui
+Insight Actions,Knowledge Insight Actions,Remove,tabui:create-set-ui
+Insight Actions,Knowledge Insight Actions,Remove,tabui:hide-title
+Insight Actions,Knowledge Insight Actions,Remove,tabdoc:remove-field-label
+Insight Actions,Knowledge Insight Actions,Remove,tabui:remove-mru
+Insight Actions,Knowledge Insight Actions,Remove,tabdoc:update-point-annotation-pullback
+Meta Actions,Meta Actions,Copy,tabdoc:undo
+Meta Actions,Meta Actions,Copy,tabdoc:set-primitive
+Meta Actions,Meta Actions,Delete,tabdoc:redo
+Meta Actions,Meta Actions,Delete,tabui:delete-sheet-ui
+Meta Actions,Meta Actions,Delete,tabdoc:change-semantic-role
+Meta Actions,Meta Actions,Delete,tabui:change-field-type-ui
+Meta Actions,Meta Actions,Edit,tabui:delete-fields-ui
+Meta Actions,Meta Actions,Edit,tabdoc:change-data-type
+Meta Actions,Meta Actions,Edit,tabdoc:convert-to-dimension
+Meta Actions,Meta Actions,Edit,tabui:copy-image-dashboard
+Meta Actions,Meta Actions,Edit,tabui:copy-image-worksheet
+Meta Actions,Meta Actions,Edit,tabui:paste
+Meta Actions,Meta Actions,Edit,tabdoc:convert-to-discrete
+Meta Actions,Meta Actions,Edit,tabui:edit-parameter
+Meta Actions,Meta Actions,Edit,tabdoc:convert-to-measure
+Meta Actions,Meta Actions,Edit,tabui:edit-default-sort-ui
+Meta Actions,Meta Actions,Paste,tabui:replace-field-ui
+Meta Actions,Meta Actions,Redo,tabui:deactivate-dashboard
+Meta Actions,Meta Actions,Undo,tabui:reset-caption-ui
+Task Actions,Task Actions,goto,tabui:new-worksheet-ui
+Task Actions,Task Actions,New,tabui:duplicate-sheet-ui
+Task Actions,Task Actions,New,tabui:document
+Task Actions,Task Actions,New,tabui:new-dashboard-ui
+Task Actions,Task Actions,New,tabui:duplicate-sheet-or-crosstab-ui
+Task Actions,Task Actions,New,tabui:open-workbook
+Task Actions,Task Actions,New,tabui:new-storyboard-ui
+Task Actions,Task Actions,New,tabui:new-workbook
+Task Actions,Task Actions,New,tabdoc:goto-sheet
+Task Actions,Task Actions,New,tabdoc:new-blank-story-point
+Task Actions,Task Actions,Open,tabui:new-schema-drill-path-ui
