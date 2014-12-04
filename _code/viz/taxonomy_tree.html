@@ -26,9 +26,7 @@
 
 </style>
 <body>
-<button type="button" onclick="reloadData()">Load</button>
 <button type="button" onclick="collapseAll()">Collapse All</button>
-<button type="button" onclick="expandAll()">Expand All</button>
 <div id="viz"></div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
@@ -57,14 +55,24 @@ var svg = d3.select("div#viz").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+}
+
 d3.json("files/taxonomy-tree/taxonomy_tree.json", function(error, flare) {
   edge_weight.domain([0,flare.size]);
   root = flare;
   root.x0 = height / 2;
   root.y0 = 0;
   
-  root.children.forEach(collapse);
-  update(root);
+  var nodeName = getURLParameter('node');
+  var targetNode = matchNodeName(root,nodeName);
+
+//  root.children.forEach(collapse);
+//  update(root);
+  
+    collapseAndExpand(targetNode);
+    
 });
 
 d3.select(self.frameElement).style("height", "800px");
@@ -210,6 +218,13 @@ function collapseAll() {
 	update(root);
 }
 
+function expandOnly(d) {
+	if (d._children) {
+		d.children = d._children;
+		d._children = null;
+	}
+}
+
 function expand(d) {
 	if (d._children) {
 		d.children = d._children;
@@ -218,7 +233,6 @@ function expand(d) {
 	if (d.children) {
 		d.children.forEach(expand);
 	}
-	
 }
 
 function expandAll() {
@@ -272,6 +286,75 @@ function linkColor(linkCode) {
 		  return '#0950D0';//generic blue
 		  break;
 	}
+}
+
+function matchNodeName(d,nodeName)
+{
+	if (d.name == nodeName)
+	{
+		return d;
+	}else if (d.children) {
+		for (i in d.children) {
+			var matchedNode = matchNodeName(d.children[i],nodeName)
+			if (matchedNode != null){
+				return matchedNode;}
+		}
+	}
+	return null;
+}
+
+//function matchNodeName(d,nodeName)
+//{
+//	if (d.name == nodeName)
+//	{
+//		expand(d);
+//		return d;
+//	}else if (d.children) {
+//		for (i in d.children) {
+//			var matchedNode = matchNodeName(d.children[i],nodeName)
+//			if (matchedNode != null){
+//				return matchedNode;}
+//		}
+//	}
+//	return null;
+//}
+
+
+function parentOf(node,root)
+{
+	if (root.children) {
+		for (i in root.children) {
+			var child = root.children[i]
+			if ( child.name == node.name){ return root; }
+			else{
+				var parentName = parentOf(node,child);
+				if (parentName != null){ return parentName; }
+			}
+		}
+	}
+	return null;
+	
+}
+
+function collapseAndExpand(node)
+{
+	
+	var originalNode = node;
+	var hasParent = true;
+	var parents = [];
+	while(hasParent){
+		var parentNode = parentOf(node,root);
+		console.log(parentNode);
+		if (parentNode == null){hasParent = false;}
+		else {
+			parents.push(parentNode);
+			node = parentNode;
+		}
+	}
+	root.children.forEach(collapse);
+	parents.forEach(expandOnly);
+	expandOnly(originalNode);
+	update(node);
 }
 </script>
 

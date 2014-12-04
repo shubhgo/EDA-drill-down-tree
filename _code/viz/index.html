@@ -58,6 +58,7 @@
 <button type="button" onclick="reloadData()">Load</button>
 <button type="button" onclick="collapseAll()">Collapse All</button>
 <button type="button" onclick="expandAll()">Expand All</button>
+<div id="legend"></div>
 <div id="viz"></div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
@@ -79,6 +80,12 @@ var edge_weight = d3.scale.linear()
 
 var diagonal = d3.svg.diagonal()
     .projection(function(d) { return [d.y, d.x]; });
+
+// Define 'div' for tooltips
+var div = d3.select("div#legend")
+	.append("div")  // declare the tooltip div 
+	.attr("class", "tooltip")              // apply the 'tooltip' class
+	.style("opacity", 0);                  // set the opacity to nil
 
 var svg = d3.select("div#viz").append("svg")
     .attr("width", width + margin.right + margin.left)
@@ -115,7 +122,24 @@ function update(source) {
   var nodeEnter = node.enter().append("g")
       .attr("class", "node")
       .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-      .on("click", click);
+      .on("click", click)
+      .on("mouseover", function(d) {		
+                  div.transition()
+      				.duration(500)	
+      				.style("opacity", 0);
+      				
+      			div.transition()
+      				.duration(200)	
+      				.style("opacity", .9);
+      				
+      			div.html(
+      				'<a href= "./taxonomy_tree.html?node='+d.name[0]+'">' + // The first <a> tag
+      				'Legend For: '+d.name[0]+
+      				"</a>"                          // closing </a> tag
+      				)	 
+      				.style("left", (d3.event.pageX) + "px")			 
+      				.style("top", (d3.event.pageY - 28) + "px");
+      			});
 
   nodeEnter.append("circle")
       .attr("r", 1e-6)
