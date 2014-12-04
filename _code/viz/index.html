@@ -24,6 +24,28 @@
   /*stroke-width: 1.5px;*/
 }
 
+/*.tooltip {
+	opacity: 1.0;
+	font-family: arial, sans-serif;
+	
+}*/
+#legend{
+	margin-top: 10px;
+}
+.button {
+  font: 12px Arial;
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 4px;
+  padding: 2px 6px 2px 6px;
+  /*margin-top: -100px;*/
+  margin-left: 2px;
+  border-top: 1px solid #B2B2B2;
+  border-right: 1px solid #B2B2B2;
+  border-bottom: 1px solid #ACACAC;
+  border-left: 1px solid #B2B2B2;
+}
 </style>
 <body>
 <select id='levels'>
@@ -64,8 +86,8 @@
 <script>
 
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
-    width = 960 - margin.right - margin.left,
-    height = 800 - margin.top - margin.bottom;
+    width = 1060 - margin.right - margin.left,
+    height = 1200 - margin.top - margin.bottom;
     
 var i = 0,
     duration = 750,
@@ -133,7 +155,7 @@ function update(source) {
       				.style("opacity", .9);
       				
       			div.html(
-      				'<a href= "./taxonomy_tree.html?node='+d.name[0]+'">' + // The first <a> tag
+      				'<a class="button"  href= "./taxonomy_tree.html?node='+d.name[0]+'">' + // The first <a> tag
       				'Legend For: '+d.name[0]+
       				"</a>"                          // closing </a> tag
       				)	 
