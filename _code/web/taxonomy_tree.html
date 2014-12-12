@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<style>
+
+.node {
+  cursor: pointer;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  /*stroke: steelblue;*/
+  opacity: 0.3;
+  /*stroke-width: 1.5px;*/
+}
+
+</style>
+<body>
+<button type="button" onclick="collapseAll()">Collapse All</button>
+<div id="viz"></div>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+var margin = {top: 20, right: 120, bottom: 20, left: 120},
+    width = 960 - margin.right - margin.left,
+    height = 800 - margin.top - margin.bottom;
+    
+var i = 0,
+    duration = 750,
+    root;
+
+var tree = d3.layout.tree()
+    .size([height, width]);
+
+var edge_weight = d3.scale.linear()
+					.domain([0, 100])
+                    .range([0, 100]);
+
+var diagonal = d3.svg.diagonal()
+    .projection(function(d) { return [d.y, d.x]; });
+
+var svg = d3.select("div#viz").append("svg")
+    .attr("width", width + margin.right + margin.left)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+}
+
+d3.json("files/taxonomy-tree/taxonomy_tree.json", function(error, flare) {
+  edge_weight.domain([0,flare.size]);
+  root = flare;
+  root.x0 = height / 2;
+  root.y0 = 0;
+  
+  var nodeName = getURLParameter('node');
+  var targetNode = matchNodeName(root,nodeName);
+
+//  root.children.forEach(collapse);
+//  update(root);
+  
+    collapseAndExpand(targetNode);
+    
+});
+
+d3.select(self.frameElement).style("height", "800px");
+
+function update(source) {
+
+  // Compute the new tree layout.
+  var nodes = tree.nodes(root).reverse(),
+      links = tree.links(nodes);
+
+  // Normalize for fixed-depth.
+  nodes.forEach(function(d) { d.y = d.depth * 140; });
+
+  // Update the nodes…
+  var node = svg.selectAll("g.node")
+      .data(nodes, function(d) { return d.id || (d.id = ++i); });
+
+  // Enter any new nodes at the parent's previous position.
+  var nodeEnter = node.enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+      .on("click", click);
+
+  nodeEnter.append("circle")
+      .attr("r", 1e-6)
+      .style("fill", function(d) { 
+      return linkColor(d.colorCode); })
+      .style("fill-opacity",0.5);
+
+  nodeEnter.append("text")
+      .attr("x", function(d) { return d.children || d._children ? -13 : 13; })
+      .attr("dy", ".35em")
+      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+      .text(function(d) { return d.name; })
+      .style("fill-opacity", 1e-6);
+
+  // Transition nodes to their new position.
+  var nodeUpdate = node.transition()
+      .duration(duration)
+      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+
+  nodeUpdate.select("circle")
+      .attr("r", 10)
+      .style("fill", function(d) { 
+      return linkColor(d.colorCode); })
+      .style("fill-opacity",0.5);
+
+  nodeUpdate.select("text")
+      .style("fill-opacity", 1);
+
+  // Transition exiting nodes to the parent's new position.
+  var nodeExit = node.exit().transition()
+      .duration(duration)
+      .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+      .remove();
+
+  nodeExit.select("circle")
+      .attr("r", 1e-6);
+
+  nodeExit.select("text")
+      .style("fill-opacity", 1e-6);
+
+  // Update the links…
+  var link = svg.selectAll("path.link")
+      .data(links, function(d) { return d.target.id; });
+
+  // Enter any new links at the parent's previous position.
+  link.enter().insert("path", "g")
+      .attr("class", "link")
+      .attr("stroke-width", function(d){
+      	return 1;
+      })
+      .attr("d", function(d) {
+        var o = {x: source.x0, y: source.y0};
+        return diagonal({source: o, target: o});
+      })
+      .attr("stroke", function(d){ 
+      	return linkColor(d.target.colorCode);});
+
+  // Transition links to their new position.
+  link.transition()
+      .duration(duration)
+      .attr("d", diagonal)
+      .attr("stroke-width", 1);
+
+  // Transition exiting nodes to the parent's new position.
+  link.exit().transition()
+      .duration(duration)
+      .attr("d", function(d) {
+        var o = {x: source.x, y: source.y};
+        return diagonal({source: o, target: o});
+      })
+      .remove();
+
+  // Stash the old positions for transition.
+  nodes.forEach(function(d) {
+    d.x0 = d.x;
+    d.y0 = d.y;
+  });
+}
+
+function calculateLinkSourcePosition(link) {
+	targetID = link.target.id;
+	var childrenNumber = link.source.children.length;
+	var widthAbove = 0;
+	for (var i = 0; i < childrenNumber; i++)
+	{
+		if (link.source.children[i].id == targetID)
+		{
+			// we are done
+			widthAbove = widthAbove + link.source.children[i].size/2;
+			break;
+		}else {
+			// keep adding
+			widthAbove = widthAbove + link.source.children[i].size
+		}
+	}
+	return link.source.size/2 - widthAbove;
+}
+
+// Toggle children on click.
+function click(d) {
+  if (d.children) {
+    d._children = d.children;
+    d.children = null;
+  } else {
+    d.children = d._children;
+    d._children = null;
+  }
+  update(d);
+}
+
+function collapse(d) {
+  if (d.children) {
+    d._children = d.children;
+    d._children.forEach(collapse);
+    d.children = null;
+  }
+}
+
+function collapseAll() {
+	root.children.forEach(collapse);
+	update(root);
+}
+
+function expandOnly(d) {
+	if (d._children) {
+		d.children = d._children;
+		d._children = null;
+	}
+}
+
+function expand(d) {
+	if (d._children) {
+		d.children = d._children;
+		d._children = null;
+	}
+	if (d.children) {
+		d.children.forEach(expand);
+	}
+}
+
+function expandAll() {
+	root.children.forEach(expand);
+	update(root);
+}
+
+function reloadData(){
+	var levels = document.getElementById("levels");
+	var level_val = levels.options[levels.selectedIndex].value;
+	
+	var ass_element = document.getElementById("assignment");
+	var ass_val = ass_element.options[ass_element.selectedIndex].value;
+	
+	var file_name = 'assignment/'+ass_val+'-level-'+level_val+'.json';
+//	ass1-anna-activities-level-1.json
+//	console.log(file_name);
+//	console.log(document.getElementById("assignment").selectedIndex);
+
+	d3.json(file_name, function(error, flare) {
+	edge_weight.domain([0,flare.size]);
+	  root = flare;
+	  root.x0 = height / 2;
+	  root.y0 = 0;
+		
+	  root.children.forEach(collapse);
+	  update(root);
+	});
+	
+}
+
+function linkColor(linkCode) {
+	switch (linkCode)
+	{
+	  case 'Exploration Actions': 
+	  	return '#0000FF';//blue
+	    break;
+	  case 'Task Actions':
+	  	return '#FF7F00';//orange
+	  	break;
+	  case 'App Actions': 
+		return '#FF0000';//red
+		break;
+	  case 'Insight Actions':
+		return '#7F007F';//purple
+		break;
+	  case 'Meta Actions':
+		  return '#00FFFF';//cyan
+		  break;
+	  default:
+		  return '#0950D0';//generic blue
+		  break;
+	}
+}
+
+function matchNodeName(d,nodeName)
+{
+	if (d.name == nodeName)
+	{
+		return d;
+	}else if (d.children) {
+		for (i in d.children) {
+			var matchedNode = matchNodeName(d.children[i],nodeName)
+			if (matchedNode != null){
+				return matchedNode;}
+		}
+	}
+	return null;
+}
+
+//function matchNodeName(d,nodeName)
+//{
+//	if (d.name == nodeName)
+//	{
+//		expand(d);
+//		return d;
+//	}else if (d.children) {
+//		for (i in d.children) {
+//			var matchedNode = matchNodeName(d.children[i],nodeName)
+//			if (matchedNode != null){
+//				return matchedNode;}
+//		}
+//	}
+//	return null;
+//}
+
+
+function parentOf(node,root)
+{
+	if (root.children) {
+		for (i in root.children) {
+			var child = root.children[i]
+			if ( child.name == node.name){ return root; }
+			else{
+				var parentName = parentOf(node,child);
+				if (parentName != null){ return parentName; }
+			}
+		}
+	}
+	return null;
+	
+}
+
+function collapseAndExpand(node)
+{
+	
+	var originalNode = node;
+	var hasParent = true;
+	var parents = [];
+	while(hasParent){
+		var parentNode = parentOf(node,root);
+		console.log(parentNode);
+		if (parentNode == null){hasParent = false;}
+		else {
+			parents.push(parentNode);
+			node = parentNode;
+		}
+	}
+	root.children.forEach(collapse);
+	parents.forEach(expandOnly);
+	expandOnly(originalNode);
+	update(node);
+}
+</script>
+
+</body>
+</html>
